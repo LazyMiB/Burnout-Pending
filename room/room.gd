@@ -16,19 +16,21 @@ func _ready():
 	_day_text = _day.text
 	_score_text = _score.text
 	RenderingServer.set_default_clear_color(Color("#000000"))
-	_global.on_day_increased.connect(_on_day_change)
+	_global.on_day_increased.connect(_on_day_changed)
+	_global.on_score_changed.connect(_on_score_changed)
 	if _global.night:
 		_set_night()
 		_global.on_play_sound.emit("back", $"Player".position)
 	else:
 		_set_day()
 		_global.on_play_sound.emit("start", $"Player".position)
-	_update_score_label()
-	_on_day_change(_global.current_day)
+	_on_score_changed(_global.current_score)
+	_on_day_changed(_global.current_day)
 
 
 func _exit_tree():
-	_global.on_day_increased.disconnect(_on_day_change)
+	_global.on_day_increased.disconnect(_on_day_changed)
+	_global.on_score_changed.disconnect(_on_score_changed)
 
 
 func _process(_delta):
@@ -42,7 +44,6 @@ func _process(_delta):
 		_global.increase_day()
 		_global.reset_current_score()
 		_set_day()
-		_update_score_label()
 		_global.on_play_sound.emit("wake_up", $"Player".position)
 
 
@@ -62,14 +63,14 @@ func _set_day():
 	$"CanvasModulate".hide()
 
 
-func _update_score_label():
-	_score.set_deferred("text", _score_text % _global.current_score)
-
-
 func _on_pause_button_pressed():
 	get_tree().paused = true
 	$"Pause".show()
 
 
-func _on_day_change(day):
+func _on_day_changed(day):
 	_day.set_deferred("text", _day_text % day)
+
+
+func _on_score_changed(score):
+	_score.set_deferred("text", _score_text % score)

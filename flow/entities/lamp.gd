@@ -25,11 +25,14 @@ func is_lighted():
 
 
 func _on_collide(node):
+	_global.on_collide.emit(self, node)
 	if node is CharacterBody2D:
 		if is_lighted():
 			_global.on_play_sound.emit("double_score_up", position)
+			_global.double_increase_score()
 		else:
 			_global.on_play_sound.emit("score_up", position)
+			_global.increase_score()
 	else:
 		_global.on_play_sound.emit("collide_lamp", position)
 

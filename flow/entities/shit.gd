@@ -9,5 +9,7 @@ func _ready():
 
 
 func _on_collide(node):
+	_global.on_collide.emit(self, node)
 	if node is CharacterBody2D:
 		_global.on_play_sound.emit("collide_player", position)
+		_global.on_life_decreased.emit()

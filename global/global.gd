@@ -11,10 +11,11 @@ var night := false
 signal on_music_toggle(state)
 signal on_sounds_toggle(state)
 signal on_life_decreased()
-signal on_score_increased()
+signal on_score_changed()
 signal on_day_increased()
 signal on_died()
 signal on_play_sound()
+signal on_collide()
 
 
 func _ready():
@@ -22,35 +23,45 @@ func _ready():
 	on_music_toggle.connect(_on_music_toggle)
 
 
+func set_night(value):
+	set_deferred("night", value)
+
+
 func increase_day():
-	current_day += 1
-	if current_day > days:
-		days = current_day
-	on_day_increased.emit(current_day)
+	var new_day = current_day + 1
+	if new_day > days:
+		set_deferred("days", new_day)
+	set_deferred("current_day", new_day)
+	on_day_increased.emit(new_day)
+
+
+func _increase_score(doubled):
+	var new_score = current_score + (2 if doubled else 1)
+	if new_score > score:
+		set_deferred("score", new_score)
+	set_deferred("current_score", new_score)
+	on_score_changed.emit(new_score)
 
 
 func increase_score():
-	current_score += 1
-	if current_score > score:
-		score = current_score
-	on_score_increased.emit(current_score)
+	_increase_score(false)
 
 
 func double_increase_score():
-	current_score += 2
-	if current_score > score:
-		score = current_score
-	on_score_increased.emit(current_score)
+	_increase_score(true)
 
 
 func reset():
-	night = false
-	current_day = 0
-	current_score = 0
+	set_deferred("night", false)
+	set_deferred("current_score", 0)
+	set_deferred("current_day", 1)
+	if 1 > days:
+		set_deferred("days", 1)
 
 
 func reset_current_score():
-	current_score = 0
+	set_deferred("current_score", 0)
+	on_score_changed.emit(0)
 
 
 func on_button_click_sound():

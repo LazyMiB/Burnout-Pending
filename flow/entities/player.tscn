@@ -64,6 +64,7 @@ fill_from = Vector2(0.5, 0.5)
 [node name="Player" type="CharacterBody2D" unique_id=871058792]
 collision_layer = 3
 collision_mask = 3
+safe_margin = 1.0
 script = ExtResource("1_adbqq")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=605230167]

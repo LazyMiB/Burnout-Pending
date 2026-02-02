@@ -11,7 +11,7 @@
 [node name="Sounds" type="Node2D" unique_id=544841581]
 script = ExtResource("1_nr11v")
 
-[node name="CollideLamp" type="AudioStreamPlayer2D" parent="." unique_id=1635081633]
+[node name="Collide" type="AudioStreamPlayer2D" parent="." unique_id=1635081633]
 stream = ExtResource("1_unp8d")
 max_distance = 800.0
 bus = &"Sounds"

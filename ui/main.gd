@@ -25,7 +25,6 @@ func _ready():
 
 func _on_play_button_pressed():
 	_global.reset()
-	_global.increase_day()
 	_global.on_button_click_sound()
 	get_tree().change_scene_to_file("res://room/room.tscn")
 

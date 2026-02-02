@@ -37,6 +37,11 @@ func _ready():
 	_spawn_entity()
 	_spawn_timer.start(spawn_time)
 	_difficulty_timer.start(difficulty_time)
+	_global.on_collide.connect(_on_collide)
+
+
+func _exit_tree():
+	_global.on_collide.disconnect(_on_collide)
 
 
 func _process(_delta):
@@ -64,14 +69,6 @@ func _spawn_entity():
 		entity = SHIT.instantiate()
 	add_child(entity)
 	_entities.append(entity)
-	if entity.name == "Shit":
-		entity.body_entered.connect(func(_e):
-			_on_collide_to_shit(entity)
-		)
-	elif entity.name == "Lamp":
-		entity.body_entered.connect(func(_e):
-			_on_collide_to_lamp(entity)
-		)
 	var limit = _get_limit()
 	var x = randi_range(limit.min.x + size.x, limit.max.x - size.y)
 	entity.position.x = x
@@ -107,22 +104,13 @@ func _on_spawn_timer_timeout():
 		_spawn_entity()
 
 
-func _on_collide_to_shit(entity):
-	_global.on_life_decreased.emit()
-	_remove_entity(entity)
-
-
-func _on_collide_to_lamp(entity):
-	if entity.is_lighted():
-		_global.double_increase_score()
-	else:
-		_global.increase_score()
-	_remove_entity(entity)
-
-
 func _remove_entity(entity: RigidBody2D):
 	_entities.erase(entity)
 	entity.queue_free()
+
+
+func _on_collide(from, _to):
+	_remove_entity(from)
 
 
 func _on_difficulty_timer_timeout():

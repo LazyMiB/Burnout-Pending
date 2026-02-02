@@ -2,7 +2,7 @@ extends Node2D
 
 
 @onready var _global = $"/root/Global"
-@onready var _lamp = $"CollideLamp"
+@onready var _collide = $"Collide"
 @onready var _player = $"CollidePlayer"
 @onready var _double_up = $"DoubleScoreUp"
 @onready var _up = $"ScoreUp"
@@ -12,16 +12,23 @@ extends Node2D
 
 func _ready():
 	_global.on_play_sound.connect(_on_play)
+	_global.on_collide.connect(_on_collide)
 
 
 func _exit_tree():
 	_global.on_play_sound.disconnect(_on_play)
+	_global.on_collide.disconnect(_on_collide)
+
+
+func _on_collide(from, to):
+	if from is not CharacterBody2D and to is not CharacterBody2D:
+		_on_play("collide", from.position)
 
 
 func _on_play(sound_name, pos):
-	if sound_name == "collide_lamp":
-		_lamp.set_deferred("position", pos)
-		_lamp.call_deferred("play")
+	if sound_name == "collide":
+		_collide.set_deferred("position", pos)
+		_collide.call_deferred("play")
 	elif sound_name == "collide_player":
 		_player.set_deferred("position", pos)
 		_player.call_deferred("play")

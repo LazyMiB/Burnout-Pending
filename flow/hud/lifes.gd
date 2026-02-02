@@ -20,17 +20,18 @@ func _exit_tree():
 
 
 func _on_decrease():
-	_lifes -= 1
-	if _lifes == 2:
-		_heart_3.texture = _heart_empty
-	elif _lifes == 1:
-		_heart_2.texture = _heart_empty
+	var new_lifes = _lifes - 1
+	set_deferred("_lifes", new_lifes)
+	if new_lifes == 2:
+		_heart_3.set_deferred("texture", _heart_empty)
+	elif new_lifes == 1:
+		_heart_2.set_deferred("texture", _heart_empty)
 	else:
-		_heart_1.texture = _heart_empty
-		_timer.start()
+		_heart_1.set_deferred("texture", _heart_empty)
+		_timer.call_deferred("start")
 		_global.on_died.emit()
 
 
 func _on_dead_timer_timeout():
-	_global.night = true
+	_global.set_night(true)
 	get_tree().change_scene_to_file("res://room/room.tscn")
