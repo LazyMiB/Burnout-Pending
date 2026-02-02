@@ -12,11 +12,16 @@ func _ready():
 	RenderingServer.set_default_clear_color(Color("#000000"))
 	queue_redraw()
 	_global.on_play_sound.emit("start_flow", position)
+	get_window().size_changed.connect(_on_size_changed)
+
+
+func _on_size_changed():
+	queue_redraw()
 
 
 func _input(event):
 	if event.is_action_released("pause"):
-		get_tree().paused = true
+		get_tree().pausawped = true
 		$"Pause".show()
 
 

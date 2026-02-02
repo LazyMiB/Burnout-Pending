@@ -27,7 +27,7 @@ b = Vector2(480, 640)
 a = Vector2(0, 640)
 b = Vector2(480, 640)
 
-[node name="Node2D" type="Node2D" unique_id=1479517646]
+[node name="Flow" type="Node2D" unique_id=1479517646]
 light_mask = 2
 script = ExtResource("1_uf51a")
 
@@ -44,6 +44,18 @@ shape = SubResource("SegmentShape2D_py5fq")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Border" unique_id=2038642758]
 shape = SubResource("SegmentShape2D_76vpj")
+
+[node name="Player" parent="." unique_id=871058792 instance=ExtResource("7_l2wlr")]
+position = Vector2(227, 489)
+
+[node name="Entities" parent="." unique_id=102654340 instance=ExtResource("6_24jle")]
+entities_limit = 2
+spawn_time_min = 0.2
+difficulty_time = 30.0
+
+[node name="Sounds" parent="." unique_id=544841581 instance=ExtResource("12_jhf54")]
+
+[node name="Stars" parent="." unique_id=174312488 instance=ExtResource("4_kprc8")]
 
 [node name="Pause" parent="." unique_id=726105523 instance=ExtResource("5_py5fq")]
 layer = 4
@@ -94,23 +106,14 @@ horizontal_alignment = 2
 vertical_alignment = 1
 script = ExtResource("8_uu18g")
 
+[node name="Node2D" type="Node2D" parent="." unique_id=209377566]
+
 [node name="GameLayer" type="CanvasLayer" parent="." unique_id=59267117]
-
-[node name="Stars" parent="GameLayer" unique_id=174312488 instance=ExtResource("4_kprc8")]
-
-[node name="Entities" parent="GameLayer" unique_id=102654340 instance=ExtResource("6_24jle")]
-entities_limit = 2
-spawn_time_min = 0.2
-difficulty_time = 30.0
+follow_viewport_enabled = true
 
 [node name="PlayerLayer" type="CanvasLayer" parent="GameLayer" unique_id=821729792]
 layer = 2
 follow_viewport_enabled = true
-
-[node name="Player" parent="GameLayer/PlayerLayer" unique_id=871058792 instance=ExtResource("7_l2wlr")]
-position = Vector2(227, 489)
-
-[node name="Sounds" parent="GameLayer/PlayerLayer" unique_id=544841581 instance=ExtResource("12_jhf54")]
 
 [connection signal="pressed" from="HUD/PauseButton" to="." method="_on_pause_button_pressed"]
 [connection signal="timeout" from="HUD/Lifes/DeadTimer" to="HUD/Lifes" method="_on_dead_timer_timeout"]

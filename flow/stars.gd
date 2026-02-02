@@ -20,8 +20,6 @@ const SQUARE_AREA := 10000
 @export var density := 1.0
 @export var amount_limit := 50
 @export var enabled := true
-@export var limit_x := 480
-@export var limit_y := 640
 
 var _stars = []
 
@@ -33,6 +31,11 @@ func _init():
 func _ready():
 	_fill_stars()
 	queue_redraw()
+	get_window().size_changed.connect(_on_size_changed)
+
+
+func _exit_tree():
+	get_window().size_changed.disconnect(_on_size_changed)
 
 
 func _process(delta):
@@ -54,7 +57,7 @@ func _process(delta):
 		_stars.erase(star)
 	var in_start = true if _stars.size() else false
 	for i in range(for_remove.size()):
-		_stars.append(_make_random_star(in_start))
+		_stars.append(_get_random_star(in_start))
 	queue_redraw()
 
 
@@ -63,12 +66,17 @@ func _draw():
 		draw_circle(star.pos, star.size, star.color)
 
 
-func _fill_stars():
-	var size: Vector2 = get_viewport().size
-	var amount = _calc_amount(size)
+func _on_size_changed():
 	_stars.clear()
+	_fill_stars()
+	queue_redraw()
+
+
+func _fill_stars():
+	var size: Vector2 = get_viewport_rect().size
+	var amount = _calc_amount(size)
 	for i in amount:
-		var star = _make_random_star(false)
+		var star = _get_random_star(false)
 		_stars.append(star)
 
 
@@ -80,7 +88,7 @@ func _calc_amount(size):
 	return amount
 
 
-func _make_random_star(in_start):
+func _get_random_star(in_start):
 	var size_star = randf_range(size_min, size_max)
 	var limit = _get_limit()
 	var x = randf_range(limit.min.x + size_star, limit.max.x - size_star)
@@ -98,10 +106,8 @@ func _make_random_star(in_start):
 
 
 func _get_limit():
-	var center = get_viewport_rect().size / 2
-	var area = Vector2(limit_x, limit_y) / 2
 	var limit = {
-		"min": center - area,
-		"max": center + area
+		"min": Vector2.ZERO,
+		"max": get_viewport_rect().size
 	}
 	return limit

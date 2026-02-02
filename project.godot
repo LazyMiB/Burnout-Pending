@@ -37,9 +37,12 @@ Global="*uid://ccowh7v65rjr0"
 
 window/size/viewport_width=480
 window/size/viewport_height=640
-window/size/resizable=false
-window/size/maximize_disabled=true
+window/stretch/mode="viewport"
 window/handheld/orientation=1
+
+[editor]
+
+movie_writer/movie_file="/home/alex/code/godot/burnout-pending/dist/video.avi"
 
 [input]
 
