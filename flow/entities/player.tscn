@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://4ruuk6sqyn52"]
+
+[ext_resource type="Script" uid="uid://dkifuk4q3ykbb" path="res://flow/entities/player.gd" id="1_adbqq"]
+[ext_resource type="Texture2D" uid="uid://bo2r08j5ba8ja" path="res://assets/images/game/rocket.png" id="2_w67bu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_adbqq"]
+atlas = ExtResource("2_w67bu")
+region = Rect2(102, 152, 102, 152)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gpp3t"]
+atlas = ExtResource("2_w67bu")
+region = Rect2(0, 0, 102, 152)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uf51a"]
+atlas = ExtResource("2_w67bu")
+region = Rect2(102, 0, 102, 152)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kprc8"]
+atlas = ExtResource("2_w67bu")
+region = Rect2(204, 0, 102, 152)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_py5fq"]
+atlas = ExtResource("2_w67bu")
+region = Rect2(0, 152, 102, 152)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_76vpj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_adbqq")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gpp3t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uf51a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kprc8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_py5fq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_24jle"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kprc8"]
+gradient = SubResource("Gradient_24jle")
+width = 200
+height = 300
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Player" type="CharacterBody2D" unique_id=871058792]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_adbqq")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=605230167]
+z_index = 1
+sprite_frames = SubResource("SpriteFrames_76vpj")
+autoplay = "default"
+frame = 2
+frame_progress = 0.21097165
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=203131235]
+polygon = PackedVector2Array(-31, -15, -31, -36, -23, -53, -2, -75, 1, -75, 24, -51, 30, -39, 30, -2, 49, 18, 49, 63, 30, 34, 29, 49, -29, 49, -31, 35, -49, 63, -50, 18, -31, -2)
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1284756998]
+position = Vector2(0, 58)
+range_layer_max = 3
+texture = SubResource("GradientTexture2D_kprc8")
+
+[node name="Timer" type="Timer" parent="." unique_id=1684444552]
+wait_time = 0.1
+autostart = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1436821217]
+position = Vector2(0, 51)
+emission_shape = 1
+emission_sphere_radius = 30.0
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=67386457]
+position = Vector2(13, -169)
+limit_left = 0
+limit_top = 0
+limit_right = 480
+limit_bottom = 640
+
+[node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=553458915]
+current = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

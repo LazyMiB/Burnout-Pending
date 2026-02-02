@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cfmscnqg7mgfs"]
+
+[ext_resource type="Script" uid="uid://c0rf2fpmta5vj" path="res://global/music.gd" id="1_1k5wo"]
+
+[node name="Music" type="Node2D" unique_id=1794307135]
+script = ExtResource("1_1k5wo")
+
+[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1668906304]
+bus = &"Music"
+
+[connection signal="finished" from="AudioPlayer" to="." method="_on_audio_player_finished"]

@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://c28whpgrohhub"]
+
+[ext_resource type="Script" uid="uid://dl254liuoepoo" path="res://flow/entities/entities.gd" id="1_u441b"]
+
+[node name="Entities" type="Node2D" unique_id=102654340]
+script = ExtResource("1_u441b")
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=1296459076]
+wait_time = 2.0
+
+[node name="DifficultyTimer" type="Timer" parent="." unique_id=1088318141]
+wait_time = 10.0
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="DifficultyTimer" to="." method="_on_difficulty_timer_timeout"]

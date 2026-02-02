@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://dad2u2xor8h7q"]
+
+[ext_resource type="Script" uid="uid://7u2joa4q0iaq" path="res://flow/entities/lamp.gd" id="1_1mmo7"]
+[ext_resource type="Texture2D" uid="uid://dugqp0ldcn88n" path="res://assets/images/game/lamp.png" id="1_ijfxr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1mmo7"]
+atlas = ExtResource("1_ijfxr")
+region = Rect2(0, 0, 62, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_77fj7"]
+atlas = ExtResource("1_ijfxr")
+region = Rect2(62, 0, 62, 62)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hxby8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1mmo7")
+}],
+"loop": true,
+"name": &"off",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_77fj7")
+}],
+"loop": true,
+"name": &"on",
+"speed": 0.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_uf51a"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ijfxr"]
+gradient = SubResource("Gradient_uf51a")
+width = 200
+height = 200
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Lamp" type="RigidBody2D" unique_id=1841057732]
+collision_layer = 2
+collision_mask = 2
+mass = 0.001
+center_of_mass_mode = 1
+center_of_mass = Vector2(0.5, 0.5)
+inertia = 0.1
+contact_monitor = true
+max_contacts_reported = 3
+script = ExtResource("1_1mmo7")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1672870139]
+sprite_frames = SubResource("SpriteFrames_hxby8")
+animation = &"on"
+autoplay = "off"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=731153338]
+build_mode = 1
+polygon = PackedVector2Array(-12, 28, -12, 16, -25, 3, -30, -4, -30, -15, -25, -25, -9, -30, 9, -30, 24, -24, 30, -14, 30, -5, 23, 5, 12, 15, 12, 28, 5, 28, 4, 30, -4, 30, -6, 28)
+
+[node name="Timer" type="Timer" parent="." unique_id=630651672]
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=422423057]
+enabled = false
+color = Color(0.83889705, 0.83889705, 0.838897, 1)
+energy = 0.3
+range_layer_max = 3
+texture = SubResource("GradientTexture2D_ijfxr")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d1s1x2iu5btmw"]
+
+[ext_resource type="Script" uid="uid://bt8ixu1lqmlj4" path="res://flow/stars.gd" id="1_l5quh"]
+
+[node name="Stars" type="Node2D" unique_id=174312488]
+script = ExtResource("1_l5quh")

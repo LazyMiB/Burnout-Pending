@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://53ctjy21o1k8"]
+
+[ext_resource type="Script" uid="uid://3toa4cyy4lp7" path="res://ui/ui_sounds.gd" id="1_3uf7e"]
+[ext_resource type="AudioStream" uid="uid://boovku8sxexjt" path="res://assets/sounds/ui/click.ogg" id="1_28yhd"]
+[ext_resource type="AudioStream" uid="uid://dmce28jfhwij5" path="res://assets/sounds/ui/pause.ogg" id="3_ivojc"]
+
+[node name="UISounds" type="Node2D" unique_id=646374668]
+script = ExtResource("1_3uf7e")
+
+[node name="Click" type="AudioStreamPlayer2D" parent="." unique_id=75493303]
+stream = ExtResource("1_28yhd")
+bus = &"Sounds"
+
+[node name="Pause" type="AudioStreamPlayer2D" parent="." unique_id=398498574]
+stream = ExtResource("3_ivojc")
+bus = &"Sounds"

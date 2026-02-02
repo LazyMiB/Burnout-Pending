@@ -1,0 +1,155 @@
+[gd_scene format=3 uid="uid://bricocccuu030"]
+
+[ext_resource type="Script" uid="uid://b3kxwav0ru0k7" path="res://ui/main.gd" id="1_04ebt"]
+[ext_resource type="Texture2D" uid="uid://ce33v13jk0cke" path="res://assets/images/ui/button/button-normal.png" id="1_t6oic"]
+[ext_resource type="Texture2D" uid="uid://bykljhm8s40v7" path="res://assets/images/ui/button/button-activated.png" id="2_h17sc"]
+[ext_resource type="Texture2D" uid="uid://bpe34ahdjximk" path="res://assets/images/ui/button/button-hover.png" id="3_fc3ap"]
+[ext_resource type="Texture2D" uid="uid://cin8vv7q3m6jp" path="res://assets/images/ui/button/button-focused.png" id="4_06s8x"]
+[ext_resource type="FontFile" uid="uid://cn0sfewu16dwl" path="res://assets/fonts/NotoSerif-Black.ttf" id="5_h17sc"]
+[ext_resource type="Texture2D" uid="uid://yjymfx5kvks0" path="res://assets/images/ui/check/on/check-normal.png" id="6_06s8x"]
+[ext_resource type="Texture2D" uid="uid://dim88rcqj1dfc" path="res://assets/images/ui/check/off/check-normal.png" id="7_04ebt"]
+[ext_resource type="PackedScene" uid="uid://d1s1x2iu5btmw" path="res://flow/stars.tscn" id="9_ar4ev"]
+
+[node name="Control" type="Control" unique_id=1560537099]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_04ebt")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1353629232]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -162.0
+offset_right = 130.0
+offset_bottom = 162.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer" unique_id=514918594]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_h17sc")
+theme_override_font_sizes/font_size = 26
+text = "Burnout Pending"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SecondTitleLabel" type="Label" parent="VBoxContainer" unique_id=573849687]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.641934, 0.641934, 0.641934, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_h17sc")
+theme_override_font_sizes/font_size = 18
+text = "Sleep Is Blocking"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayButton" type="TextureButton" parent="VBoxContainer" unique_id=838775635]
+layout_mode = 2
+texture_normal = ExtResource("1_t6oic")
+texture_pressed = ExtResource("2_h17sc")
+texture_hover = ExtResource("3_fc3ap")
+texture_disabled = ExtResource("1_t6oic")
+texture_focused = ExtResource("4_06s8x")
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/PlayButton" unique_id=376940801]
+layout_mode = 0
+offset_right = 260.0
+offset_bottom = 100.0
+
+[node name="Label" type="Label" parent="VBoxContainer/PlayButton/CenterContainer" unique_id=623670332]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_h17sc")
+theme_override_font_sizes/font_size = 64
+text = "Play"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RecordLabel" type="Label" parent="VBoxContainer" unique_id=839378686]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.74558026, 0.7455802, 0.7455802, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_h17sc")
+theme_override_font_sizes/font_size = 12
+text = "Record: %d (%d days)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicCheck" type="CheckButton" parent="VBoxContainer" unique_id=643086679]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.16565639, 0.16565642, 0.16565639, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.19434929, 0.19434926, 0.19434929, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.23392558, 0.2339254, 0.23392543, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_h17sc")
+theme_override_font_sizes/font_size = 30
+theme_override_icons/checked = ExtResource("6_06s8x")
+theme_override_icons/unchecked = ExtResource("7_04ebt")
+theme_override_icons/checked_disabled = ExtResource("6_06s8x")
+theme_override_icons/unchecked_disabled = ExtResource("7_04ebt")
+theme_override_icons/checked_mirrored = ExtResource("6_06s8x")
+theme_override_icons/unchecked_mirrored = ExtResource("7_04ebt")
+theme_override_icons/checked_disabled_mirrored = ExtResource("6_06s8x")
+theme_override_icons/unchecked_disabled_mirrored = ExtResource("7_04ebt")
+button_pressed = true
+text = "Music"
+flat = true
+alignment = 1
+
+[node name="SoundsCheck" type="CheckButton" parent="VBoxContainer" unique_id=317601758]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.16565621, 0.16565639, 0.16565683, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.19434929, 0.19434926, 0.19434929, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.23392546, 0.23392546, 0.23392543, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_h17sc")
+theme_override_font_sizes/font_size = 30
+theme_override_icons/checked = ExtResource("6_06s8x")
+theme_override_icons/unchecked = ExtResource("7_04ebt")
+theme_override_icons/checked_disabled = ExtResource("6_06s8x")
+theme_override_icons/unchecked_disabled = ExtResource("7_04ebt")
+theme_override_icons/checked_mirrored = ExtResource("6_06s8x")
+theme_override_icons/unchecked_mirrored = ExtResource("7_04ebt")
+theme_override_icons/checked_disabled_mirrored = ExtResource("6_06s8x")
+theme_override_icons/unchecked_disabled_mirrored = ExtResource("7_04ebt")
+button_pressed = true
+text = "Sounds"
+flat = true
+alignment = 1
+
+[node name="InfoLabel" type="Label" parent="VBoxContainer" unique_id=1399212925]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45840502, 0.45840508, 0.45840502, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_h17sc")
+theme_override_font_sizes/font_size = 10
+text = "v%s, by LazyMiB, for Mini Jam 203"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Stars" parent="." unique_id=174312488 instance=ExtResource("9_ar4ev")]
+
+[connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MusicCheck" to="." method="_on_music_check_pressed"]
+[connection signal="pressed" from="VBoxContainer/SoundsCheck" to="." method="_on_sounds_check_pressed"]

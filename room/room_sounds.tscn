@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://b1cbk4yfqjkkh"]
+
+[ext_resource type="AudioStream" uid="uid://4ifnn2jph5wq" path="res://assets/sounds/game/wake-up.ogg" id="1_6ocbr"]
+[ext_resource type="Script" uid="uid://cmwmibjiu1fax" path="res://room/room_sounds.gd" id="1_vaflg"]
+[ext_resource type="AudioStream" uid="uid://j8hvddqsste2" path="res://assets/sounds/ui/start.ogg" id="2_oogam"]
+[ext_resource type="AudioStream" uid="uid://c6fv8pa1o4wsl" path="res://assets/sounds/game/tp-back.ogg" id="3_oogam"]
+
+[node name="RoomSounds" type="Node2D" unique_id=1429063875]
+script = ExtResource("1_vaflg")
+
+[node name="WakeUp" type="AudioStreamPlayer2D" parent="." unique_id=957699961]
+stream = ExtResource("1_6ocbr")
+max_distance = 800.0
+bus = &"Sounds"
+
+[node name="Start" type="AudioStreamPlayer2D" parent="." unique_id=296718458]
+stream = ExtResource("2_oogam")
+max_distance = 800.0
+bus = &"Sounds"
+
+[node name="Back" type="AudioStreamPlayer2D" parent="." unique_id=1175467997]
+stream = ExtResource("3_oogam")
+max_distance = 800.0
+bus = &"Sounds"

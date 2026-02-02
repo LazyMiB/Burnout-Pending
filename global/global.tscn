@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://ccowh7v65rjr0"]
+
+[ext_resource type="Script" uid="uid://b5857huxrdhad" path="res://global/global.gd" id="1_6q3x5"]
+[ext_resource type="PackedScene" uid="uid://53ctjy21o1k8" path="res://ui/ui_sounds.tscn" id="2_qxp0b"]
+[ext_resource type="PackedScene" uid="uid://cfmscnqg7mgfs" path="res://global/music.tscn" id="3_vt5yb"]
+
+[node name="Global" type="Node2D" unique_id=647820115]
+process_mode = 3
+script = ExtResource("1_6q3x5")
+
+[node name="UISounds" parent="." unique_id=646374668 instance=ExtResource("2_qxp0b")]
+
+[node name="Music" parent="." unique_id=1794307135 instance=ExtResource("3_vt5yb")]

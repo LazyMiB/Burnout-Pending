@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://b0aye71gfhw0t"]
+
+[ext_resource type="Script" uid="uid://briit06v0eitb" path="res://flow/sounds.gd" id="1_nr11v"]
+[ext_resource type="AudioStream" uid="uid://dllc1rkrov2r7" path="res://assets/sounds/game/collide.ogg" id="1_unp8d"]
+[ext_resource type="AudioStream" uid="uid://c4s67c1luqbxu" path="res://assets/sounds/game/damage.ogg" id="2_gtk6t"]
+[ext_resource type="AudioStream" uid="uid://dyqhv50s15hf0" path="res://assets/sounds/game/score-max.ogg" id="3_gtk6t"]
+[ext_resource type="AudioStream" uid="uid://blgi0io856sjs" path="res://assets/sounds/game/score-up.ogg" id="3_wri8s"]
+[ext_resource type="AudioStream" uid="uid://c28ibhyjrskxf" path="res://assets/sounds/game/crash.ogg" id="6_gupyt"]
+[ext_resource type="AudioStream" uid="uid://lip4y16cib08" path="res://assets/sounds/game/start-flow.ogg" id="7_gupyt"]
+
+[node name="Sounds" type="Node2D" unique_id=544841581]
+script = ExtResource("1_nr11v")
+
+[node name="CollideLamp" type="AudioStreamPlayer2D" parent="." unique_id=1635081633]
+stream = ExtResource("1_unp8d")
+max_distance = 800.0
+bus = &"Sounds"
+
+[node name="CollidePlayer" type="AudioStreamPlayer2D" parent="." unique_id=1992079596]
+stream = ExtResource("2_gtk6t")
+max_distance = 800.0
+bus = &"Sounds"
+
+[node name="DoubleScoreUp" type="AudioStreamPlayer2D" parent="." unique_id=281909384]
+stream = ExtResource("3_gtk6t")
+max_distance = 800.0
+bus = &"Sounds"
+
+[node name="ScoreUp" type="AudioStreamPlayer2D" parent="." unique_id=1343944727]
+stream = ExtResource("3_wri8s")
+max_distance = 800.0
+bus = &"Sounds"
+
+[node name="Crash" type="AudioStreamPlayer2D" parent="." unique_id=590239198]
+stream = ExtResource("6_gupyt")
+max_distance = 800.0
+bus = &"Sounds"
+
+[node name="StartFlow" type="AudioStreamPlayer2D" parent="." unique_id=519724111]
+stream = ExtResource("7_gupyt")
+max_distance = 800.0
+bus = &"Sounds"

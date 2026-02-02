@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://baww773uxs7fs"]
+
+[ext_resource type="Script" uid="uid://bti6vxdym40xx" path="res://flow/entities/shit.gd" id="1_n1lv0"]
+[ext_resource type="Texture2D" uid="uid://dckjq7hag8i82" path="res://assets/images/game/shit.png" id="1_owkoa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3qsee"]
+atlas = ExtResource("1_owkoa")
+region = Rect2(0, 0, 62, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qcn8i"]
+atlas = ExtResource("1_owkoa")
+region = Rect2(62, 0, 62, 62)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oajyf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3qsee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qcn8i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.5
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y5njp"]
+size = Vector2(60, 54)
+
+[node name="Shit" type="RigidBody2D" unique_id=1841057732]
+collision_layer = 2
+collision_mask = 2
+mass = 0.001
+center_of_mass_mode = 1
+center_of_mass = Vector2(0.5, 0.5)
+inertia = 0.1
+contact_monitor = true
+max_contacts_reported = 3
+script = ExtResource("1_n1lv0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1672870139]
+sprite_frames = SubResource("SpriteFrames_oajyf")
+autoplay = "default"
+frame_progress = 0.2148064
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=189792674]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_y5njp")
