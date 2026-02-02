@@ -1,8 +1,8 @@
 extends Node2D
 
 
-@export var armchair_distance := 10
-@export var bed_distance := 10
+@export var armchair_distance := 15
+@export var bed_distance := 20
 
 @onready var _global = $"/root/Global"
 @onready var _score = $"HUD/ScoreLabel"
@@ -41,10 +41,8 @@ func _process(_delta):
 	# bed handle
 	distance = $"Player".position.distance_to($"Bed".position)
 	if distance < bed_distance and not _is_day():
-		_global.increase_day()
-		_global.reset_current_score()
-		_set_day()
-		_global.on_play_sound.emit("wake_up", $"Player".position)
+		if $"SleepTimer".is_stopped():
+			$"SleepTimer".start()
 
 
 func _is_day():
@@ -74,3 +72,10 @@ func _on_day_changed(day):
 
 func _on_score_changed(score):
 	_score.set_deferred("text", _score_text % score)
+
+
+func _on_sleep_timer_timeout():
+	_global.increase_day()
+	_global.reset_current_score()
+	call_deferred("_set_day")
+	_global.on_play_sound.emit("wake_up", $"Player".position)
