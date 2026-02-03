@@ -32,7 +32,7 @@ func _input(event):
 
 func _physics_process(delta):
 	# hadle touches
-	if _pos_to and position.distance_to(_pos_to) <= 5:
+	if _pos_to and position.distance_to(_pos_to) <= 1:
 		_pos_to = Vector2.ZERO
 	# get directions
 	var directions = Input.get_vector("left", "right", "up", "down").normalized()
