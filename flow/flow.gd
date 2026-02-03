@@ -21,7 +21,7 @@ func _on_size_changed():
 
 func _input(event):
 	if event.is_action_released("pause"):
-		get_tree().pausawped = true
+		get_tree().paused = true
 		$"Pause".show()
 
 
