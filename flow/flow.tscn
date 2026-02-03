@@ -49,6 +49,7 @@ shape = SubResource("SegmentShape2D_76vpj")
 position = Vector2(227, 489)
 
 [node name="Entities" parent="." unique_id=102654340 instance=ExtResource("6_24jle")]
+z_index = 1
 entities_limit = 2
 spawn_time_min = 0.2
 difficulty_time = 30.0
@@ -105,15 +106,6 @@ text = "Score: %d"
 horizontal_alignment = 2
 vertical_alignment = 1
 script = ExtResource("8_uu18g")
-
-[node name="Node2D" type="Node2D" parent="." unique_id=209377566]
-
-[node name="GameLayer" type="CanvasLayer" parent="." unique_id=59267117]
-follow_viewport_enabled = true
-
-[node name="PlayerLayer" type="CanvasLayer" parent="GameLayer" unique_id=821729792]
-layer = 2
-follow_viewport_enabled = true
 
 [connection signal="pressed" from="HUD/PauseButton" to="." method="_on_pause_button_pressed"]
 [connection signal="timeout" from="HUD/Lifes/DeadTimer" to="HUD/Lifes" method="_on_dead_timer_timeout"]
