@@ -6,8 +6,6 @@ An exciting journey into the world of development: help a game dev stay in a sta
 
 Go to the armchair to enter a flow state. Collect lamps, avoid poop. Then go to bed, this will start a new day.
 
-Don't maximize the window, the game doesn't work in this mode due to a bug. This only works correctly with a resolution of 480x640.
-
 ## Controls
 
 * Move: WASD, Arrow, Gamepad, Mouse, Touchscreen
